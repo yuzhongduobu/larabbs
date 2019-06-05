@@ -17,6 +17,8 @@
       <!-- Right Side Of Navbar -->
       <ul class="navbar-nav navbar-right">
         <!-- Authentication Links -->
+        <!-- 重点看 Blade 的 guest 条件语句：
+        如果是未登录用户的话，就显示注册和登录按钮，如果是已登录用户的话，即显示用户菜单。 -->
         @guest
           <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
