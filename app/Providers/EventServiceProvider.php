@@ -18,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        \Illuminate\Auth\Events\Verified::class => [
+            \App\Listeners\EmailVerified::class,
+        ],
+        // 这种键值对应的写法，可以让单个事件对应多个监听器，这里我们的事件是 \Illuminate\Auth\Events\Verified ，监听器是 \App\Listeners\EmailVerified
     ];
 
     /**
