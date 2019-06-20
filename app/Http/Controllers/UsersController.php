@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
@@ -19,9 +20,21 @@ class UsersController extends Controller
         return view('users.edit',compact('user'));
     }
 
-    public function update(UserRequest $request,User $user)
+    public function update(UserRequest $request,ImageUploadHandler $uploader,User $user)
     {
-        $user->update($request->all());
-        return redirect()->route('users.show',$users->id)->with('success','个人资料更新成功！');
+       $data = $request->all();
+
+        if ($request->avatar) {
+            $result = $uploader->save($request->avatar, 'avatars', $user->id);
+            if ($result) {
+                $data['avatar'] = $result['path'];
+            }
+        }
+
+        $user->update($data);
+        return redirect()->route('users.show', $user->id)->with('success', '个人资料更新成功！');
     }
+//     因为我们使用了命名空间，所以需要在顶部加载 use App\Handlers\ImageUploadHandler;；
+// $data = $request->all(); 赋值 $data 变量，以便对更新数据的操作；
+// 以下代码处理了图片上传的逻辑，注意 if ($result) 的判断是因为 ImageUploadHandler 对文件后缀名做了限定，不允许的情况下将返回 false：
 }
