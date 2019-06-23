@@ -23,10 +23,15 @@
         <!-- Authentication Links -->
         <!-- 重点看 Blade 的 guest 条件语句：
         如果是未登录用户的话，就显示注册和登录按钮，如果是已登录用户的话，即显示用户菜单。 -->
-        @guest
+          @guest
           <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
         @else
+          <li class="nav-item">
+            <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('topics.create') }}">
+              <i class="fa fa-plus"></i>
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="{{ Auth::user()->avatar }}" class="img-responsive img-circle" width="30px" height="30px">
