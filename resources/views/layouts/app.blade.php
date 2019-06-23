@@ -11,6 +11,7 @@
  <!--  @yield('title', 'LaraBBS') 继承此模板的页面，如果没有定制 title 区域的话，就会自动使用第二个参数 LaraBBS 作为标题前缀。 -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <!-- mix('css/app.css') 会根据 webpack.mix.js 的逻辑来生成 CSS 文件链接。 -->
+  @yield('styles')
 </head>
 <body>
   <div id="app" class="{{ route_class() }}-page"><!-- route_class() 是我们自定义的辅助方法，我们还需要在 helpers.php 文件中添加此方法： -->
@@ -30,5 +31,7 @@
 
   <!-- Scripts -->
   <script src="{{ mix('js/app.js') }}"></script>
+
+  @yield('scripts')
 </body>
 </html>
