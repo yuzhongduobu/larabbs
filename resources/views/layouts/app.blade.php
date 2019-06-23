@@ -7,8 +7,9 @@
 
   <!--CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}"><!-- csrf-token 标签是为了方便前端的 JavaScript 脚本获取 CSRF 令牌。 -->
-  <title>@yield('title', 'LaraBBS') - Laravel 进阶教程</title>
+  <title>@yield('title', '品学楼') - 品学楼</title>
  <!--  @yield('title', 'LaraBBS') 继承此模板的页面，如果没有定制 title 区域的话，就会自动使用第二个参数 LaraBBS 作为标题前缀。 -->
+  <meta name="description" content="@yield('description', '品学楼')" />
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <!-- mix('css/app.css') 会根据 webpack.mix.js 的逻辑来生成 CSS 文件链接。 -->
   @yield('styles')
